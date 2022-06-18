@@ -5,8 +5,10 @@ class AddTodo extends Component {
   // Create a local react state of the this component with a content property set to nothing.
   constructor() {
     super();
+    
     this.state = {
       content: "",
+      date: "",
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user.
@@ -15,6 +17,7 @@ class AddTodo extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
+      date: Date().toLocaleString('en-US'),
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
@@ -22,11 +25,12 @@ class AddTodo extends Component {
   // this.props.addTodo(this.state) passes the current state (or user input) into the addTodo function defined
   // in the Home.js file which then adds the input into the list.
   handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();    
     if (this.state.content.trim()) {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
+        date: "",
       });
     }
   };
